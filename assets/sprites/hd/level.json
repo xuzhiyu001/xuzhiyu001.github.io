@@ -1,0 +1,165 @@
+{"frames": {
+
+"ball-back":
+{
+	"frame": {"x":2346,"y":6,"w":86,"h":86},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":86,"h":86},
+	"sourceSize": {"w":86,"h":86},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ball-front":
+{
+	"frame": {"x":1988,"y":567,"w":92,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":90},
+	"sourceSize": {"w":92,"h":90},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ball-gold-back":
+{
+	"frame": {"x":2439,"y":6,"w":86,"h":86},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":86,"h":86},
+	"sourceSize": {"w":86,"h":86},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ball-gold-front":
+{
+	"frame": {"x":1988,"y":664,"w":91,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":91,"h":90},
+	"sourceSize": {"w":91,"h":90},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"bg-back":
+{
+	"frame": {"x":6,"y":6,"w":1975,"h":864},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1975,"h":864},
+	"sourceSize": {"w":1975,"h":864},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"bg-front":
+{
+	"frame": {"x":6,"y":1720,"w":1975,"h":785},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1975,"h":785},
+	"sourceSize": {"w":1975,"h":785},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"field":
+{
+	"frame": {"x":6,"y":2512,"w":1975,"h":377},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1975,"h":377},
+	"sourceSize": {"w":1975,"h":377},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"frame0":
+{
+	"frame": {"x":2087,"y":567,"w":85,"h":185},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":185},
+	"sourceSize": {"w":85,"h":185},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"frame1":
+{
+	"frame": {"x":2532,"y":6,"w":85,"h":185},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":185},
+	"sourceSize": {"w":85,"h":185},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"frame2":
+{
+	"frame": {"x":2346,"y":99,"w":85,"h":185},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":185},
+	"sourceSize": {"w":85,"h":185},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"frame3":
+{
+	"frame": {"x":2438,"y":99,"w":85,"h":185},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":185},
+	"sourceSize": {"w":85,"h":185},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"frame4":
+{
+	"frame": {"x":2624,"y":6,"w":85,"h":185},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":185},
+	"sourceSize": {"w":85,"h":185},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"frame5":
+{
+	"frame": {"x":2716,"y":6,"w":85,"h":185},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":185},
+	"sourceSize": {"w":85,"h":185},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"frame6":
+{
+	"frame": {"x":2530,"y":198,"w":85,"h":185},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":185},
+	"sourceSize": {"w":85,"h":185},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"goal-back":
+{
+	"frame": {"x":1988,"y":6,"w":184,"h":554},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":184,"h":554},
+	"sourceSize": {"w":184,"h":554},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"goal-front":
+{
+	"frame": {"x":2179,"y":6,"w":160,"h":567},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":160,"h":567},
+	"sourceSize": {"w":160,"h":567},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tribune":
+{
+	"frame": {"x":6,"y":877,"w":1975,"h":836},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1975,"h":836},
+	"sourceSize": {"w":1975,"h":836},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "level.png",
+	"format": "RGBA8888",
+	"size": {"w":2895,"h":2895},
+	"scale": "0.45",
+	"smartupdate": "$TexturePacker:SmartUpdate:014709c92c4d8330ca7f5df371b853fe:7600795374c5724406d426e4eed9b294:131701cb6c4e8d84a5be75f0cc65185d$"
+}
+}

@@ -1,0 +1,186 @@
+{
+  "teams": {
+    "france": {
+      "sprite-key": "france",
+      "name": "france",
+      "players": {
+        "pogba": {
+          "name": "Fransesco Tosti",
+          "sprite-key": "pogba"
+        },
+        "griezmann": {
+          "name": "Danny Red",
+          "sprite-key": "griezmann"
+        }
+      }
+    },
+    "england": {
+      "sprite-key": "england",
+      "name": "england",
+      "players": {
+        "vardy": {
+          "name": "Mel Falco",
+          "sprite-key": "vardy"
+        },
+        "rooney": {
+          "name": "Hazardous Ethan",
+          "sprite-key": "rooney"
+        }
+      }
+    },
+    "turkey": {
+      "sprite-key": "turkey",
+      "name": "turkey",
+      "players": {
+        "yilmaz": {
+          "name": "Yilmaz",
+          "sprite-key": "yilmaz"
+        },
+        "turan": {
+          "name": "Turan",
+          "sprite-key": "turan"
+        }
+      }
+    },
+    "portugal": {
+      "sprite-key": "portugal",
+      "name": "portugal",
+      "players": {
+        "ronaldo": {
+          "name": "Jan Robbert",
+          "sprite-key": "ronaldo"
+        },
+        "pepe": {
+          "name": "Rob Wazowski",
+          "sprite-key": "pepe"
+        }
+      }
+    },
+    "spain": {
+      "sprite-key": "spain",
+      "name": "spain",
+      "players":{
+        "silva": {
+          "name": "Donaldo",
+          "sprite-key": "silva"
+        },
+        "iniesta": {
+          "name": "Gary Bane",
+          "sprite-key": "iniesta"
+        }
+      }
+    },
+    "italy": {
+      "sprite-key": "italy",
+      "name": "italy",
+      "players": {
+        "buffon": {
+          "name": "David Louis",
+          "sprite-key": "buffon"
+        },
+        "sharaawy": {
+          "name": "Ibra",
+          "sprite-key": "sharaawy"
+        }
+      }
+    },
+    "germany": {
+      "sprite-key": "germany",
+      "name": "germany",
+      "players": {
+        "muller": {
+          "name": "David Louis",
+          "sprite-key": "muller"
+        },
+        "schweinsteiger": {
+          "name": "Ibra",
+          "sprite-key": "schweinsteiger"
+        }
+      }
+    },
+    "poland": {
+      "sprite-key": "poland",
+      "name": "poland",
+      "players": {
+        "lewandowski": {
+          "name": "David Louis",
+          "sprite-key": "lewandowski"
+        },
+        "milik": {
+          "name": "Ibra",
+          "sprite-key": "milik"
+        }
+      }
+    },
+    "belgium": {
+      "sprite-key": "belgium",
+      "name": "belgium",
+      "players": {
+        "hazard": {
+          "name": "David Louis",
+          "sprite-key": "hazard"
+        },
+        "lukaku": {
+          "name": "Ibra",
+          "sprite-key": "lukaku"
+        }
+      }
+    },
+    "wales": {
+      "sprite-key": "wales",
+      "name": "wales",
+      "players": {
+        "bale": {
+          "name": "David Louis",
+          "sprite-key": "bale"
+        },
+        "ramsey": {
+          "name": "Ibra",
+          "sprite-key": "ramsey"
+        }
+      }
+    },
+    "sweden": {
+      "sprite-key": "sweden",
+      "name": "sweden",
+      "players": {
+        "ibrahimovic": {
+          "name": "David Louis",
+          "sprite-key": "ibrahimovic"
+        },
+        "guidetti": {
+          "name": "Ibra",
+          "sprite-key": "guidetti"
+        }
+      }
+    },
+    "croatia": {
+      "sprite-key": "croatia",
+      "name": "croatia",
+      "players": {
+        "modric": {
+          "name": "David Louis",
+          "sprite-key": "modric"
+        },
+        "mandzukic": {
+          "name": "Ibra",
+          "sprite-key": "mandzukic"
+        }
+      }
+    },
+    "austria": {
+      "sprite-key": "austria",
+      "name": "austria",
+      "players": {
+        "alaba": {
+          "name": "David Louis",
+          "sprite-key": "alaba"
+        },
+        "fuchs": {
+          "name": "Ibra",
+          "sprite-key": "fuchs"
+        }
+      }
+    }
+  }
+}

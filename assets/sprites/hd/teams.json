@@ -1,0 +1,138 @@
+{"frames": {
+
+"teamlogo-austria":
+{
+	"frame": {"x":6,"y":6,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-belgium":
+{
+	"frame": {"x":90,"y":6,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-croatia":
+{
+	"frame": {"x":174,"y":6,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-england":
+{
+	"frame": {"x":6,"y":67,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-france":
+{
+	"frame": {"x":6,"y":128,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-germany":
+{
+	"frame": {"x":6,"y":189,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-italy":
+{
+	"frame": {"x":6,"y":250,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-poland":
+{
+	"frame": {"x":90,"y":67,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-portugal":
+{
+	"frame": {"x":174,"y":67,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-spain":
+{
+	"frame": {"x":90,"y":128,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-sweden":
+{
+	"frame": {"x":174,"y":128,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-turkey":
+{
+	"frame": {"x":90,"y":189,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-unknown":
+{
+	"frame": {"x":90,"y":250,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"teamlogo-wales":
+{
+	"frame": {"x":174,"y":189,"w":77,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":54},
+	"sourceSize": {"w":77,"h":54},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "teams.png",
+	"format": "RGBA8888",
+	"size": {"w":310,"h":310},
+	"scale": "0.45",
+	"smartupdate": "$TexturePacker:SmartUpdate:9963f23bd57b5c159db2cea315b7b7c8:e26f216d0655a65ba4eb7c7d5be0e74d:17666e20214cf817f9172a675dbf07ff$"
+}
+}

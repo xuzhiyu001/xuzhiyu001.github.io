@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+   <font>
+       <info aa='1' size="54" smooth='1' stretchH='100' bold='0' padding='0,0,0,0' spacing='0,0' charset='' italic='0' unicode='0' face='LCD'/>
+       <common scaleW="144" packed='0' pages='1' lineHeight="56.7" scaleH="144" base="46.35"/>
+       <pages>
+            <page id='0' file='digital-time.png'/>
+       </pages>
+        <chars count='11'>
+            <char xadvance="16.2" x="0.9" chnl='0' yoffset="46.35" y="135.9" xoffset="0" id='32' page='0' height="0" width="0"/>
+            <char xadvance="28.35" x="33.300000000000004" chnl='0' yoffset="3.15" y="0.9" xoffset="0" id='48' page='0' height="44.1" width="30.6"/>
+            <char xadvance="28.35" x="125.10000000000001" chnl='0' yoffset="3.15" y="0.9" xoffset="10.35" id='49' page='0' height="44.1" width="13.5"/>
+            <char xadvance="28.35" x="0.9" chnl='0' yoffset="3.15" y="45.9" xoffset="-0.9" id='50' page='0' height="44.1" width="31.5"/>
+            <char xadvance="28.35" x="64.8" chnl='0' yoffset="3.15" y="0.9" xoffset="0" id='51' page='0' height="44.1" width="29.7"/>
+            <char xadvance="28.35" x="95.4" chnl='0' yoffset="3.15" y="0.9" xoffset="2.25" id='52' page='0' height="44.1" width="28.8"/>
+            <char xadvance="28.35" x="0.9" chnl='0' yoffset="3.15" y="0.9" xoffset="-0.45" id='53' page='0' height="44.1" width="31.5"/>
+            <char xadvance="28.35" x="62.1" chnl='0' yoffset="3.15" y="45.9" xoffset="0" id='54' page='0' height="44.1" width="27.900000000000002"/>
+            <char xadvance="28.35" x="33.300000000000004" chnl='0' yoffset="3.15" y="90.9" xoffset="2.25" id='55' page='0' height="44.1" width="27.900000000000002"/>
+            <char xadvance="28.35" x="0.9" chnl='0' yoffset="3.15" y="90.9" xoffset="0" id='56' page='0' height="44.1" width="30.6"/>
+            <char xadvance="28.35" x="33.300000000000004" chnl='0' yoffset="3.15" y="45.9" xoffset="2.25" id='57' page='0' height="44.1" width="27.900000000000002"/>
+       </chars>
+   </font>

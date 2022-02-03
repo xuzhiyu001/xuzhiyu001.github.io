@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+   <font>
+       <info aa='1' size="36" smooth='1' stretchH='100' bold='0' padding='0,0,0,0' spacing='0,0' charset='' italic='0' unicode='0' face='Flaticon'/>
+       <common scaleW="144" packed='0' pages='1' lineHeight="37.800000000000004" scaleH="115.2" base="33.75"/>
+       <pages>
+            <page id='0' file='iconsicons.png'/>
+       </pages>
+        <chars count='6'>
+            <char xadvance="14.4" x="0.9" chnl='0' yoffset="31.5" y="80.10000000000001" xoffset="0" id='32' page='0' height="0" width="0"/>
+            <char xadvance="36" x="40.5" chnl='0' yoffset="0" y="0.9" xoffset="0.45" id='97' page='0' height="38.7" width="37.800000000000004"/>
+            <char xadvance="36" x="40.5" chnl='0' yoffset="1.35" y="40.5" xoffset="0" id='98' page='0' height="35.1" width="38.7"/>
+            <char xadvance="36" x="0.9" chnl='0' yoffset="0" y="40.5" xoffset="0" id='99' page='0' height="38.7" width="38.7"/>
+            <char xadvance="36" x="0.9" chnl='0' yoffset="0" y="0.9" xoffset="0" id='100' page='0' height="38.7" width="38.7"/>
+            <char xadvance="36" x="79.2" chnl='0' yoffset="0" y="0.9" xoffset="1.8" id='101' page='0' height="38.7" width="35.1"/>
+       </chars>
+   </font>
