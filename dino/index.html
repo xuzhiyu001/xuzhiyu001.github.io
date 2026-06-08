@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奶龙跑酷</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --neon-cyan: #00FFFF;
+            --neon-magenta: #FF006E;
+            --neon-yellow: #FFE600;
+            --dark-bg: #0A0014;
+            --dark-panel: #1A0A2E;
+        }
+        body {
+            background: var(--dark-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', 'Courier New', monospace;
+            padding: 20px;
+            overflow: hidden;
+        }
+        /* CRT Scanlines Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+        /* Animated Background Grid */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+        .game-wrapper {
+            position: relative;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-radius: 20px;
+            box-shadow:
+                0 0 30px var(--neon-cyan),
+                0 0 60px var(--neon-magenta),
+                inset 0 0 20px rgba(0,255,255,0.3);
+        }
+        .game-container {
+            background: var(--dark-panel);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .score-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px 25px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0,255,255,0.3);
+            border-radius: 10px;
+            box-shadow:
+                0 0 15px rgba(0,255,255,0.2),
+                inset 0 0 10px rgba(0,255,255,0.1);
+        }
+        .score-item {
+            text-align: center;
+        }
+        .score-label {
+            font-size: 10px;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+        .score-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--neon-yellow);
+            text-shadow:
+                0 0 10px var(--neon-yellow),
+                0 0 20px var(--neon-yellow),
+                0 0 30px rgba(255,230,0,0.5);
+            font-variant-numeric: tabular-nums;
+        }
+        .high-score .score-value {
+            color: var(--neon-magenta);
+            text-shadow:
+                0 0 10px var(--neon-magenta),
+                0 0 20px var(--neon-magenta);
+        }
+        canvas {
+            display: block;
+            border-radius: 8px;
+            border: 2px solid rgba(0,255,255,0.4);
+            box-shadow:
+                inset 0 0 30px rgba(0,255,255,0.1),
+                0 0 20px rgba(0,255,255,0.2);
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .control-hint {
+            background: rgba(0,0,0,0.6);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 12px;
+            color: #fff;
+            border: 1px solid rgba(0,255,255,0.4);
+            box-shadow: 0 0 10px rgba(0,255,255,0.2);
+            transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .control-hint:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow:
+                0 0 20px rgba(0,255,255,0.4),
+                0 0 40px rgba(255,0,110,0.2);
+            border-color: var(--neon-magenta);
+        }
+        .control-hint kbd {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-weight: 700;
+            margin-right: 6px;
+            color: #000;
+            text-shadow: none;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 4px;
+            text-shadow:
+                0 0 10px var(--neon-cyan),
+                0 0 20px var(--neon-cyan),
+                0 0 40px var(--neon-magenta),
+                0 0 60px var(--neon-magenta);
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+        @keyframes titlePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .title span {
+            color: var(--neon-yellow);
+            text-shadow:
+                0 0 10px var(--neon-yellow),
+                0 0 20px var(--neon-yellow);
+        }
+        /* Custom Cursor */
+        .cursor-ring {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px var(--neon-cyan), inset 0 0 15px rgba(0,255,255,0.2);
+            transition: width 0.3s, height 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .cursor-ring.hover {
+            width: 60px;
+            height: 60px;
+            border-color: var(--neon-magenta);
+            box-shadow: 0 0 30px var(--neon-magenta), inset 0 0 20px rgba(255,0,110,0.3);
+        }
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--neon-yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px var(--neon-yellow), 0 0 30px var(--neon-yellow);
+        }
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+        }
+        /* Disable default cursor in game area */
+        .game-wrapper, canvas {
+            cursor: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+    <h1 class="title">DRAGON <span>RUNNER</span></h1>
+    <div class="game-wrapper">
+        <div class="game-container">
+            <div class="score-panel">
+                <div class="score-item">
+                    <div class="score-label">Score</div>
+                    <div class="score-value" id="s">0</div>
+                </div>
+                <div class="score-item high-score">
+                    <div class="score-label">Best</div>
+                    <div class="score-value" id="h">0</div>
+                </div>
+            </div>
+            <canvas id="c" width="800" height="300"></canvas>
+            <div class="controls">
+                <span class="control-hint"><kbd>SPACE/↑</kbd> Jump</span>
+                <span class="control-hint"><kbd>↓</kbd> Duck</span>
+                <span class="control-hint"><kbd>F</kbd> Shield</span>
+                <span class="control-hint"><kbd>R</kbd> Restart</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://xuzhiyu001.github.io/lib/anime/anime.min.js"></script>
+<script>
+var CBODY="#FFE566",CB2="#FFCC00",CFACE="#FFFFFF",COUT="#CC8800",CEYE="#3D2800"
+var CEYEH="#FFFFFF",CHORN="#FFD700",CMOUTH="#FF8FAB",CEAR="#FFDD66",CDARK="#E6AA00",CBELLY="#FFFACD"
+var canvas=document.getElementById("c"),ctx=canvas.getContext("2d"),sEl=document.getElementById("s"),hEl=document.getElementById("h")
+var GY=250,G=0.7,J=-13,BS=6,GR=false,GO=false,score=0,high=parseInt(localStorage.getItem("dh"))||0,speed=BS,frame=0
+var dino={x:80,y:GY,w:44,h:56,vy:0,gr:true,duck:false,deflect:0},obs=[],timer=0,cls=[],ctimer=0,parts=[],fires=[],trollTimer=0
+var troll={x:0,y:0,w:60,h:70,vx:-1,hp:3,flash:0}
+function px(x,y,w,h,col){ctx.fillStyle=col;ctx.fillRect(x,y,w,h)}
+function drawDino(){
+var x=dino.x
+if(dino.duck){
+  var y=dino.y-32
+  px(x+4,y+10,36,16,CBODY);px(x+6,y+12,8,12,CBELLY)
+  px(x+6,y-2,32,20,CBODY);ctx.strokeStyle=COUT;ctx.lineWidth=1.5;ctx.strokeRect(x+6,y-2,32,20)
+  px(x+4,y,6,8,CBODY);px(x+5,y+2,4,4,CEAR);px(x+34,y,6,8,CBODY);px(x+35,y+2,4,4,CEAR)
+  px(x+10,y-6,5,6,CHORN);px(x+29,y-6,5,6,CHORN)
+  px(x+8,y+2,10,8,CEYE);px(x+10,y+4,3,3,CEYEH);px(x+26,y+2,10,8,CEYE);px(x+28,y+4,3,3,CEYEH)
+  px(x+6,y+10,4,3,CMOUTH);px(x+34,y+10,4,3,CMOUTH);px(x+16,y+12,12,2,CMOUTH)
+  px(x+14,y+20,16,6,CBODY);px(x+12,y+21,4,6,CBODY);px(x+28,y+21,4,6,CBODY)
+  px(x+6,y+26,10,6,CBODY);px(x+28,y+26,10,6,CBODY)
+} else {
+  var y=dino.y-dino.h
+  px(x+38,y+34,8,6,CBODY);px(x+44,y+36,4,4,CMOUTH)
+  px(x+6,y+48,8,8,CBODY);px(x+7,y+50,2,4,CDARK)
+  px(x+30,y+48,8,8,CBODY);px(x+31,y+50,2,4,CDARK)
+  px(x+4,y+18,36,32,CBODY);px(x+6,y+20,6,28,CB2);px(x+8,y+22,10,22,CBELLY)
+  px(x+2,y-4,40,32,CBODY);ctx.strokeStyle=COUT;ctx.lineWidth=1.5;ctx.strokeRect(x+2,y-4,40,32)
+  px(x,y+4,8,12,CBODY);px(x+2,y+6,4,6,CEAR);px(x+36,y+4,8,12,CBODY);px(x+38,y+6,4,6,CEAR)
+  px(x+8,y-12,6,10,CHORN);px(x+9,y-10,2,6,COUT);px(x+30,y-12,6,10,CHORN);px(x+31,y-10,2,6,COUT)
+  px(x+4,y+2,16,16,CEYE);px(x+6,y+4,5,5,CEYEH);px(x+8,y+6,2,2,CEYEH)
+  px(x+24,y+2,16,16,CEYE);px(x+26,y+4,5,5,CEYEH);px(x+28,y+6,2,2,CEYEH)
+  px(x+2,y+18,7,5,CMOUTH);px(x+35,y+18,7,5,CMOUTH)
+  px(x+16,y+24,12,3,CMOUTH);px(x+18,y+24,4,2,CFACE)
+  px(x-2,y+22,8,8,CBODY);px(x-4,y+24,4,5,CEAR);px(x+38,y+22,8,8,CBODY);px(x+42,y+24,4,5,CEAR)
+  var lo=dino.gr?Math.sin(frame*0.3)*3:0
+  px(x+6,y+48,8,8+lo,CBODY);px(x+30,y+48,8,8-lo,CBODY)
+}
+if(dino.deflect>0){
+  var ox=dino.x+dino.w/2,oy=dino.y-dino.h/2
+  ctx.shadowColor="#00FFFF";ctx.shadowBlur=30
+  var sg=ctx.createRadialGradient(ox,oy,0,ox,oy,30+dino.deflect*2)
+  sg.addColorStop(0,"rgba(0,255,255,0.6)")
+  sg.addColorStop(0.5,"rgba(0,200,255,0.3)")
+  sg.addColorStop(1,"rgba(0,150,255,0)")
+  ctx.fillStyle=sg;ctx.beginPath();ctx.arc(ox,oy,30+dino.deflect*2,0,Math.PI*2);ctx.fill()
+  ctx.strokeStyle="#00FFFF";ctx.lineWidth=3;ctx.stroke()
+  ctx.strokeStyle="#FFFFFF";ctx.lineWidth=1;ctx.stroke()
+  ctx.shadowBlur=0
+  dino.deflect=Math.max(0,dino.deflect-1)
+}}
+function drawCactus(o){
+var x=o.x,y=GY-o.h
+// Neon glow effect
+ctx.shadowColor="#00FF00";ctx.shadowBlur=15
+ctx.fillStyle="#00AA00";ctx.beginPath();ctx.roundRect(x+6,y,8,o.h,3);ctx.fill()
+ctx.fillStyle="#00FF00";ctx.beginPath();ctx.roundRect(x,y+8,6,10,3);ctx.fill()
+ctx.fillStyle="#00FF00";ctx.beginPath();ctx.roundRect(x+14,y+12,6,8,3);ctx.fill()
+ctx.shadowBlur=0
+ctx.fillStyle="#003300";ctx.fillRect(x+8,y+2,4,o.h-8)}
+function drawPtero(o){
+ctx.shadowColor="#FF006E";ctx.shadowBlur=10
+var grad=ctx.createLinearGradient(o.x,o.y,o.x,o.y+20);grad.addColorStop(0,"#FF006E");grad.addColorStop(1,"#880044")
+ctx.fillStyle=grad;var wo=Math.sin(frame*0.15)*10
+ctx.beginPath();ctx.roundRect(o.x,o.y+8,30,12,4);ctx.fill()
+ctx.beginPath();ctx.roundRect(o.x+28,o.y+6,14,10,4);ctx.fill()
+ctx.shadowBlur=0;ctx.fillStyle="#FFFFFF";ctx.beginPath();ctx.arc(o.x+38,o.y+10,4,0,Math.PI*2);ctx.fill()
+ctx.fillStyle="#AA0044";ctx.beginPath();ctx.roundRect(o.x+2,o.y+(wo>0?0:16),24,6,2);ctx.fill()
+ctx.fillStyle="#FF006E";ctx.beginPath();ctx.ellipse(o.x-2,o.y+10,12,5,wo>0?-0.3:0.3,0,Math.PI*2);ctx.fill()}
+function drawTroll(t){var tx=t.x,ty=GY-t.h
+ctx.shadowColor="#00FFFF";ctx.shadowBlur=20
+if(t.flash>0&&t.flash%4<2){ctx.shadowBlur=0;px(tx,ty-4,60,80,"#FFFFFF")}else{
+ctx.shadowColor="#FF006E";ctx.shadowBlur=15
+px(tx+6,ty+20,48,50,"#FF006E");px(tx+10,ty-4,40,30,"#FF006E")
+ctx.shadowColor="#FF0000";ctx.shadowBlur=20
+px(tx+14,ty+2,12,10,"#FF0000");px(tx+16,ty+4,4,4,"#FFFFFF")
+px(tx+34,ty+2,12,10,"#FF0000");px(tx+36,ty+4,4,4,"#FFFFFF")
+px(tx+14,ty-10,6,10,"#00FFFF");px(tx+40,ty-10,6,10,"#00FFFF")
+ctx.shadowBlur=0
+px(tx+16,ty+18,28,6,"#000");px(tx+18,ty+20,24,3,"#FF0000")
+px(tx-6,ty+28,12,18,"#FF006E");px(tx+t.w-6,ty+28,12,18,"#FF006E")
+}
+ctx.shadowBlur=0;ctx.fillStyle="#000";ctx.fillRect(tx,ty-14,60,6)
+ctx.fillStyle="#00FF00";ctx.fillRect(tx,ty-14,60*(t.hp/3),6)}
+function drawFire(f){var fx=f.x,fy=f.y,fr=f.r||8
+ctx.shadowColor="#FF6600";ctx.shadowBlur=25
+if(f.deflected){
+ctx.shadowColor="#00FFFF";ctx.shadowBlur=30
+var dg=ctx.createRadialGradient(fx,fy,0,fx,fy,fr+8);dg.addColorStop(0,"#00FFFF");dg.addColorStop(0.5,"#00AAFF");dg.addColorStop(1,"rgba(0,170,255,0)")
+ctx.fillStyle=dg;ctx.beginPath();ctx.arc(fx,fy,fr+8,0,Math.PI*2);ctx.fill()
+ctx.fillStyle="#FFFFFF";ctx.beginPath();ctx.arc(fx,fy,fr*0.5,0,Math.PI*2);ctx.fill()
+}else{
+var fg=ctx.createRadialGradient(fx,fy,0,fx,fy,fr+8);fg.addColorStop(0,"#FFFF00");fg.addColorStop(0.3,"#FF6600");fg.addColorStop(0.7,"#FF0000");fg.addColorStop(1,"rgba(255,0,0,0)")
+ctx.fillStyle=fg;ctx.beginPath();ctx.arc(fx,fy,fr+8,0,Math.PI*2);ctx.fill()
+ctx.fillStyle="#FFFFFF";ctx.beginPath();ctx.arc(fx,fy,fr*0.4,0,Math.PI*2);ctx.fill()}
+ctx.shadowBlur=0}
+function drawCloud(c){
+ctx.fillStyle="rgba(100,0,150,0.3)";ctx.beginPath()
+ctx.arc(c.x+20,c.y+15,15,0,Math.PI*2);ctx.arc(c.x+40,c.y+10,20,0,Math.PI*2);ctx.arc(c.x+65,c.y+15,15,0,Math.PI*2);ctx.fill()
+ctx.strokeStyle="rgba(0,255,255,0.5)";ctx.lineWidth=1;ctx.stroke()}
+function spawnOb(){var r=Math.random(),type=r<0.4?"small":r<0.7?"big":"cluster"
+var ob={x:canvas.width+20,type:type,w:30,h:type=="big"?50:38}
+obs.push(ob)}
+function spawnPtero(){var highPtero=Math.random()<0.5,py=highPtero?GY-130:GY-50
+var ob={x:canvas.width+20,type:"ptero",w:46,h:30,y:py,high:highPtero}
+obs.push(ob)}
+function fireTroll(){fires.push({x:troll.x-20,y:GY-40,vx:-9-speed,r:10,deflected:false})}
+function spawnExplode(x,y,col,n){for(var i=0;i<n;i++){var ang=Math.random()*Math.PI*2,sp=2+Math.random()*5
+parts.push({x:x,y:y,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp-2,l:20+Math.random()*10,s:3+Math.random()*4,c:col})}}
+function spawnPart(){parts.push({x:dino.x+22,y:dino.y-24,vx:(Math.random()-0.5)*8,vy:(Math.random()-0.5)*6-3,l:25,s:3+Math.random()*3})}
+function checkHit(){var p=8
+for(var i=0;i<obs.length;i++){var o=obs[i],ox=o.x,oy=o.type=="ptero"?o.y:GY-o.h
+if(o.type=="ptero"){var dh=dino.duck?20:0
+if(dino.x+p<ox+o.w-p&&dino.x+dino.w-p>ox+p&&dino.y-dino.h+dh+p<oy+o.h&&dino.y-dh>oy+p)return true}else{
+if(dino.x+p<ox+o.w-p&&dino.x+dino.w-p>ox+p&&dino.y-dino.h+p<oy+o.h&&dino.y>oy+p)return true}}
+for(var i=0;i<fires.length;i++){var f=fires[i]
+if(!f.deflected&&f.x>0){var dx=f.x-dino.x-dino.w/2,dy=f.y-dino.y+dino.h/2
+if(Math.sqrt(dx*dx+dy*dy)<f.r+20)return true}}
+return false}
+function startGame(){GR=true;GO=false;score=0;speed=BS;frame=0;obs=[];parts=[];cls=[];timer=80;ctimer=0;fires=[];trollTimer=200;troll={x:canvas.width+20,y:0,w:60,h:70,vx:-(2+speed*0.3),hp:3,flash:0};dino.y=GY;dino.vy=0;dino.gr=true;dino.duck=false;dino.deflect=0}
+function update(){if(!GR||GO)return;frame++;score=Math.floor(frame/6);speed=BS+frame*0.001
+if(!dino.gr){dino.vy+=G;dino.y+=dino.vy;if(dino.y>=GY){dino.y=GY;dino.vy=0;dino.gr=true;}}
+if(dino.duck){dino.y=GY;dino.vy=0;dino.gr=true;}
+timer--
+var rate=Math.max(50,120-score*0.05)
+if(timer<=0){if(Math.random()<0.3)spawnPtero();else spawnOb();timer=rate+Math.random()*60;}
+for(var i=obs.length-1;i>=0;i--){obs[i].x-=speed;if(obs[i].x+obs[i].w<0)obs.splice(i,1);}
+if(troll.hp>0){troll.x+=troll.vx;if(troll.x<-troll.w){troll.x=canvas.width+20;troll.vx=-(2+speed*0.3);}
+if(frame%45==0&&Math.random()<0.5&&troll.x<canvas.width-50&&troll.x>100)fireTroll();}else{trollTimer--
+if(trollTimer<=0){troll={x:canvas.width+20,y:0,w:60,h:70,vx:-(2+speed*0.3),hp:3,flash:0};trollTimer=300+Math.random()*200;score+=200;}}
+for(var i=fires.length-1;i>=0;i--){var f=fires[i]
+if(f.deflected){f.x+=8
+if(f.x>canvas.width+50){fires.splice(i,1);continue}
+if(troll.hp>0&&f.x+f.r>troll.x&&f.x-f.r<troll.x+troll.w&&f.y>GY-troll.h&&f.y<GY){troll.hp--;troll.flash=20;spawnExplode(f.x,f.y,"#FFD700",15);fires.splice(i,1)
+if(troll.hp<=0){spawnExplode(troll.x+troll.w/2,GY-troll.h/2,"#4A7C3B",30);spawnExplode(troll.x+troll.w/2,GY-troll.h/2,"#FF4400",20);trollTimer=300+Math.random()*200}
+continue}}else{f.x+=f.vx;if(f.x<-20){fires.splice(i,1);continue}
+var dx=f.x-dino.x-dino.w/2,dy=f.y-(dino.y-dino.h/2);if(dino.deflect>0&&Math.sqrt(dx*dx+dy*dy)<100){f.deflected=true;dino.deflect=Math.max(0,dino.deflect-5);spawnExplode(f.x,f.y,"#88CCFF",10)}}}
+ctimer--
+if(ctimer<=0){cls.push({x:canvas.width+50,y:20+Math.random()*80,s:1+Math.random()*1.5});ctimer=150+Math.random()*200;}
+for(var i=cls.length-1;i>=0;i--){cls[i].x-=cls[i].s;if(cls[i].x+80<0)cls.splice(i,1);}
+for(var i=parts.length-1;i>=0;i--){var p=parts[i];p.x+=p.vx;p.y+=p.vy;p.vy+=0.3;p.l--;if(p.l<=0)parts.splice(i,1);}
+if(checkHit()){GO=true;GR=false;for(var i=0;i<12;i++)spawnPart();if(score>high){high=score;localStorage.setItem("dh",high);}}
+if(troll.flash>0)troll.flash--;sEl.textContent=score;hEl.textContent=high}
+function draw(){
+// Dark cyberpunk sky with gradient
+var sky=ctx.createLinearGradient(0,0,0,GY);sky.addColorStop(0,"#0A0014");sky.addColorStop(0.5,"#1A0030");sky.addColorStop(1,"#2D1B4E")
+ctx.fillStyle=sky;ctx.fillRect(0,0,canvas.width,GY)
+// Animated stars
+for(var i=0;i<30;i++){
+var sx=(i*73+frame*0.5)%canvas.width,sy=(i*37)%(GY-50)
+ctx.fillStyle="rgba(255,255,255,"+0.3+Math.sin(frame*0.05+i)*0.2+")"
+ctx.fillRect(sx,sy,2,2)}
+// Distant city silhouette
+ctx.fillStyle="#0D0020"
+for(var i=0;i<canvas.width/40;i++){
+var bh=30+Math.sin(i*1.5)*20+Math.cos(i*0.7)*15
+ctx.fillRect(i*40,GY-bh-20,35,bh+20)
+ctx.fillStyle="#FF006E";ctx.fillRect(i*40+5,GY-bh,3,bh)
+ctx.fillStyle="#00FFFF";ctx.fillRect(i*40+15,GY-bh+10,3,bh-10)
+ctx.fillStyle="#0D0020"}
+// Neon clouds
+for(var i=0;i<cls.length;i++){var c=cls[i]
+ctx.fillStyle="rgba(100,0,150,0.3)";ctx.beginPath()
+ctx.arc(c.x+20,c.y+15,15,0,Math.PI*2);ctx.arc(c.x+40,c.y+10,20,0,Math.PI*2);ctx.arc(c.x+65,c.y+15,15,0,Math.PI*2);ctx.fill()
+ctx.strokeStyle="rgba(0,255,255,0.5)";ctx.lineWidth=1;ctx.stroke()}
+// Neon grid floor
+var ggrad=ctx.createLinearGradient(0,GY,0,canvas.height);ggrad.addColorStop(0,"#00FF00");ggrad.addColorStop(0.1,"#008800");ggrad.addColorStop(1,"#003300")
+ctx.fillStyle=ggrad;ctx.fillRect(0,GY+1,canvas.width,canvas.height-GY)
+ctx.strokeStyle="#00FF00";ctx.lineWidth=2
+ctx.beginPath();ctx.moveTo(0,GY+3);ctx.lineTo(canvas.width,GY+3);ctx.stroke()
+// Perspective grid lines
+ctx.strokeStyle="rgba(0,255,0,0.3)";ctx.lineWidth=1
+for(var i=-1;i<canvas.width/60+1;i++){
+ctx.beginPath();ctx.moveTo(i*60,GY+3);ctx.lineTo(canvas.width/2+(i-10)*20,canvas.height);ctx.stroke()}
+// Moving dashes
+var off=(frame*speed)%15;for(var i=-1;i<canvas.width/15+1;i++){
+ctx.fillStyle="#00FF00";ctx.shadowColor="#00FF00";ctx.shadowBlur=5
+ctx.fillRect(i*15-off,GY+5,8,2);ctx.shadowBlur=0}
+for(var i=0;i<obs.length;i++){var o=obs[i];o.type=="ptero"?drawPtero(o):drawCactus(o)}
+if(troll.hp>0)drawTroll(troll)
+for(var i=0;i<fires.length;i++)drawFire(fires[i])
+drawDino()
+for(var i=0;i<parts.length;i++){var p=parts[i]
+ctx.globalAlpha=Math.max(0,p.l/25)
+ctx.shadowColor=p.c||"#00FFFF";ctx.shadowBlur=10
+var pg=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.s);pg.addColorStop(0,p.c||"#00FFFF");pg.addColorStop(1,"rgba(0,0,0,0)")
+ctx.fillStyle=pg;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill()}
+ctx.globalAlpha=1;ctx.shadowBlur=0
+if(GO){
+ctx.fillStyle="rgba(0,0,0,0.7)";ctx.fillRect(0,0,canvas.width,canvas.height)
+// Neon game over box
+ctx.strokeStyle="#FF006E";ctx.lineWidth=3;ctx.shadowColor="#FF006E";ctx.shadowBlur=20
+ctx.beginPath();ctx.roundRect(canvas.width/2-160,canvas.height/2-70,320,140,15);ctx.stroke()
+ctx.shadowBlur=0
+ctx.fillStyle="rgba(0,0,0,0.8)";ctx.fill()
+ctx.fillStyle="#FF006E";ctx.font="bold 36px 'Orbitron',monospace";ctx.textAlign="center"
+ctx.shadowColor="#FF006E";ctx.shadowBlur=15
+ctx.fillText("GAME OVER",canvas.width/2,canvas.height/2-20)
+ctx.shadowBlur=0;ctx.font="16px 'Orbitron',monospace"
+ctx.fillStyle="#00FFFF";ctx.fillText("Score: "+score,canvas.width/2,canvas.height/2+15)
+ctx.fillStyle="#FFE600";ctx.fillText("Press R or SPACE to restart",canvas.width/2,canvas.height/2+45)}
+if(!GR&&!GO){
+ctx.fillStyle="rgba(0,0,0,0.6)";ctx.fillRect(0,0,canvas.width,canvas.height)
+// Neon start box
+ctx.strokeStyle="#00FFFF";ctx.lineWidth=3;ctx.shadowColor="#00FFFF";ctx.shadowBlur=25
+ctx.beginPath();ctx.roundRect(canvas.width/2-180,canvas.height/2-80,360,160,15);ctx.stroke()
+ctx.shadowBlur=0;ctx.fillStyle="rgba(0,0,20,0.9)";ctx.fill()
+ctx.fillStyle="#00FFFF";ctx.font="bold 42px 'Orbitron',monospace";ctx.textAlign="center"
+ctx.shadowColor="#00FFFF";ctx.shadowBlur=20
+ctx.fillText("DRAGON RUNNER",canvas.width/2,canvas.height/2-25)
+ctx.shadowBlur=0;ctx.font="18px 'Orbitron',monospace"
+ctx.fillStyle="#FF006E";ctx.fillText("Press SPACE to start",canvas.width/2,canvas.height/2+25)
+ctx.font="12px 'Orbitron',monospace";ctx.fillStyle="#888"
+ctx.fillText("Dodge obstacles • Defeat boss • Survive!",canvas.width/2,canvas.height/2+50)}}
+function loop(){update();draw();requestAnimationFrame(loop)}
+document.addEventListener("keydown",function(e){
+if(e.code=="Space"||e.code=="ArrowUp"){e.preventDefault();if(!GR)startGame();else if(!dino.duck&&dino.gr){dino.vy=J;dino.gr=false;}else if(GO)startGame();}
+if(e.code=="ArrowDown"){e.preventDefault();dino.duck=true;}
+if(e.code=="KeyF"){dino.deflect=60;}
+if(e.code=="KeyR")startGame();
+})
+document.addEventListener("keyup",function(e){if(e.code=="ArrowDown"){dino.duck=false;}})
+canvas.addEventListener("touchstart",function(e){e.preventDefault();if(!GR||GO)startGame();else if(!dino.duck&&dino.gr){dino.vy=J;dino.gr=false;}})
+hEl.textContent=high;loop()
+
+// ============ Anime.js Custom Cursor ============
+const cursorRing = document.querySelector('.cursor-ring');
+const cursorDot = document.querySelector('.cursor-dot');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
+const trails = [];
+const TRAIL_COUNT = 8;
+
+// Track mouse position
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+// Create trail elements
+for (let i = 0; i < TRAIL_COUNT; i++) {
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.style.opacity = (TRAIL_COUNT - i) / TRAIL_COUNT * 0.5;
+    trail.style.transform = `scale(${(TRAIL_COUNT - i) / TRAIL_COUNT})`;
+    document.body.appendChild(trail);
+    trails.push({ el: trail, x: 0, y: 0 });
+}
+
+// Hover effect for interactive elements
+const hoverElements = document.querySelectorAll('.control-hint, .game-wrapper');
+hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+});
+
+// Click ripple effect
+document.addEventListener('click', (e) => {
+    // Create ripple
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+        position: fixed;
+        left: ${e.clientX}px;
+        top: ${e.clientY}px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--neon-cyan);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9997;
+        transform: translate(-50%, -50%);
+    `;
+    document.body.appendChild(ripple);
+
+    anime({
+        targets: ripple,
+        scale: [1, 8],
+        opacity: [1, 0],
+        duration: 600,
+        easing: 'easeOutExpo',
+        complete: () => ripple.remove()
+    });
+});
+
+// Smooth cursor animation loop
+function animateCursor() {
+    // Dot follows mouse instantly
+    dotX += (mouseX - dotX) * 1;
+    dotY += (mouseY - dotY) * 1;
+    cursorDot.style.left = dotX + 'px';
+    cursorDot.style.top = dotY + 'px';
+
+    // Ring follows with delay
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+
+    // Trail follows with increasing delay
+    let prevX = ringX, prevY = ringY;
+    trails.forEach((trail, i) => {
+        const factor = 0.1 + (i * 0.05);
+        trail.x += (prevX - trail.x) * factor;
+        trail.y += (prevY - trail.y) * factor;
+        trail.el.style.left = trail.x + 'px';
+        trail.el.style.top = trail.y + 'px';
+        prevX = trail.x;
+        prevY = trail.y;
+    });
+
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Cursor pulse animation on idle
+let idleTime = 0;
+document.addEventListener('mousemove', () => { idleTime = 0; });
+
+setInterval(() => {
+    idleTime++;
+    if (idleTime > 60 && !cursorRing.classList.contains('hover')) {
+        anime({
+            targets: cursorRing,
+            scale: [1, 1.1, 1],
+            duration: 1000,
+            easing: 'easeInOutSine'
+        });
+    }
+}, 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>格陵兰岛 · 世界的尽头</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100100'><text y='.9em' font-size='90'>🧊</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --bg-cold: #e8ecf0;
+            --text: #1a1a2e;
+            --text-muted: #5a6275;
+            --accent: #2d4a6f;
+            --accent-light: #4a7ab0;
+            --ice: #c5d5e4;
+            --frost: #a8c5d8;
+            --night: #0f1c2e;
+            --blue-hour: #3d5a80;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: "Noto Sans SC", "Noto Serif SC", -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(180deg,
+                    rgba(26, 42, 74, 0.7) 0%,
+                    rgba(45, 74, 111, 0.5) 50%,
+                    rgba(197, 213, 228, 0.8) 100%
+                ),
+                url('images/ilulissat.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .hero-bg::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(197, 213, 228, 0.8), transparent);
+        }
+
+        /* Aurora effect */
+        .aurora {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            opacity: 0.3;
+            background: 
+                radial-gradient(ellipse80% 50% at 20% 30%, rgba(100, 200, 150, 0.4), transparent),
+                radial-gradient(ellipse 60% 40% at 70% 40%, rgba(80, 180, 200, 0.3), transparent),
+                radial-gradient(ellipse 90% 60% at 50% 20%, rgba(120, 220, 180, 0.2), transparent);
+            animation: aurora 15s ease-in-out infinite;
+        }
+
+        @keyframes aurora {
+            0%, 100% { opacity: 0.2; transform: translateY(0); }
+            50% { opacity: 0.4; transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 040px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--frost);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-family: "Noto Serif SC", serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 500px;
+            margin: 0 auto40px;
+            font-weight: 300;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Intro Section */
+        .intro {
+            padding: 120px 0;
+            background: var(--bg);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: "Noto Serif SC", serif;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .intro-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .intro-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .intro-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: #1a2a4a;
+            background-image: url('images/ilulissat.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Blue Hour Section */
+        .blue-hour {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--night) 50%, var(--blue-hour) 100%);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blue-hour::before {
+            content: "";
+            position: absolute;
+            top: 20%;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,200,100,0.15), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--frost);
+            margin-bottom: 16px;
+        }
+
+        .blue-hour h2 {
+            font-family: "Noto Serif SC", serif;
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .blue-hour-intro {
+            max-width: 600px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 60px;
+            font-size: 1.0625rem;
+        }
+
+        .blue-hour-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .blue-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .blue-card-time {
+            font-size: 0.75rem;
+            color: var(--frost);
+            margin-bottom: 16px;
+        }
+
+        .blue-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .blue-card p {
+            font-size: 0.9375rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        .blue-card-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 120px 0;
+            background: var(--bg);
+        }
+
+        .gallery h2 {
+            font-family: "Noto Serif SC", serif;
+            font-size: 2rem;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--ice), var(--frost));
+            aspect-ratio: 16/10;
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            aspect-ratio: 21/9;
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: #fff;
+        }
+
+        .gallery-item-overlay h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .gallery-item-overlay p {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* Culture Section */
+        .culture {
+            padding: 120px 0;
+            background: var(--bg-cold);
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .culture-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .culture-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .culture-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 12px;
+        }
+
+        .culture-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Quote */
+        .quote-section {
+            padding: 100px 0;
+            background: var(--night);
+            text-align: center;
+            color: #fff;
+        }
+
+        .quote-section blockquote {
+            font-family: "Noto Serif SC", serif;
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 24px;
+            line-height: 1.8;
+        }
+
+        .quote-section cite {
+            font-size: 0.875rem;
+            color: var(--frost);
+            font-style: normal;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            background: var(--text);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--frost);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .intro-grid,
+            .blue-hour-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .culture-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-item.large {
+                grid-column: span1;
+            }
+            .intro-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 24px;
+            }
+            .culture-grid {
+                grid-template-columns: 1fr;
+            }
+            .intro-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            opacity: 0;
+        }
+
+        .animate.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Disable default cursor */
+        a, button, .gallery-item, .blue-card, .culture-card {
+            cursor: none;
+        }
+
+        /* Single Frost Trail */
+        .frost-trail {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            background: radial-gradient(circle, rgba(168, 197, 216, 0.6), transparent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Frost Trail -->
+    <div class="frost-trail" style="width:6px;height:6px;"></div>
+    <script src="https://xuzhiyu001.github.io/lib/anime/anime.min.js"></script>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="aurora"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Greenland · Kalaallit Nunaat</p>
+            <h1>格陵兰岛</h1>
+            <p class="hero-desc">地球上最后的净土之一，世界最大的岛屿，一片被冰雪覆盖的神秘大陆</p>
+        </div>
+        <div class="scroll-hint">↓ 向下探索</div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h2>世界尽头的冰雪王国</h2>
+                    <p>格陵兰岛（Kalaallit Nunaat）位于北美洲东北部，是丹麦自治领，也是世界上最大的岛屿。这片广袤的土地80%都被冰雪覆盖，拥有地球上仅次于南极洲的冰原。</p>
+                    <p>岛上的冰川壮观而神秘，其中雅各布港冰川（Jakobshavn Glacier）是世界上移动最快的冰川之一，每天以惊人的速度将冰块推入大海，形成壮观的冰山景观。</p>
+                    <div class="intro-stats">
+                        <div class="stat">
+                            <div class="stat-number">2,166万</div>
+                            <div class="stat-label">面积（平方公里）</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">5.7万</div>
+                            <div class="stat-label">常住人口</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">80%</div>
+                            <div class="stat-label">冰雪覆盖率</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <!-- Greenland aerial view representation -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blue Hour -->
+    <section class="blue-hour" style="background:linear-gradient(180deg,rgba(15,28,46,0.85) 0%,rgba(15,28,46,0.7) 100%),url('images/aurora.jpg');background-size:cover;background-position:center;">
+        <div class="container">
+            <p class="section-label">Blue Hour · 蓝调时刻</p>
+            <h2>极地日落的魔法时分</h2>
+            <p class="blue-hour-intro">在格陵兰岛，夏至前后的日落持续数小时，天空在数小时之内经历从金色到粉红，再到深蓝的渐变。</p>
+
+            <div class="blue-hour-grid" style="grid-template-columns:repeat(3,1fr);gap:20px;">
+                <div class="blue-card" style="padding:32px;border-radius:20px;background:rgba(196,127,74,0.15);backdrop-filter:blur(10px);">
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.7);margin-bottom:8px;">23:00 - 01:00</p>
+                    <h3 style="font-size:1.5rem;margin-bottom:12px;color:#fff;">🌅 黄金时刻</h3>
+                    <p style="font-size:0.875rem;color:rgba(255,255,255,0.85);line-height:1.6;">太阳低悬天际，将冰川染成温暖的金橙色，雪地反射着柔和的光芒，整个世界沉浸在琥珀色的光辉中。</p>
+                </div>
+                <div class="blue-card" style="padding:32px;border-radius:20px;background:rgba(212,120,154,0.15);backdrop-filter:blur(10px);">
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.7);margin-bottom:8px;">01:00 - 03:00</p>
+                    <h3 style="font-size:1.5rem;margin-bottom:12px;color:#fff;">🌆 粉红时刻</h3>
+                    <p style="font-size:0.875rem;color:rgba(255,255,255,0.85);line-height:1.6;">天空逐渐转为粉红色调，峡湾在这柔和的光线下呈现出梦幻般的色彩，山峦与云彩交织成一幅浪漫的画卷。</p>
+                </div>
+                <div class="blue-card" style="padding:32px;border-radius:20px;background:rgba(61,90,128,0.2);backdrop-filter:blur(10px);">
+                    <p style="font-size:0.75rem;color:rgba(168,197,216,0.7);margin-bottom:8px;">03:00 - 04:30</p>
+                    <h3 style="font-size:1.5rem;margin-bottom:12px;color:#fff;">🌌 蓝调时刻</h3>
+                    <p style="font-size:0.875rem;color:rgba(255,255,255,0.85);line-height:1.6;">极光在夜空中舞动，天空呈现深邃的蓝绿色调，大地在神秘的光芒中若隐若现。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2>极致风景</h2>
+            <p class="gallery-intro">格陵兰岛的景观融合了冰川、峡湾、苔原和冰山，每一处都是大自然的鬼斧神工</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item large" style="background-image:url('images/ilulissat.jpg');background-size:cover;background-position:center;">
+                    <div class="gallery-item-overlay">
+                        <h3>伊卢利萨特冰峡湾</h3>
+                        <p>联合国教科文组织世界遗产，拥有世界上最活跃的冰川之一，每年产生超过450亿吨冰山</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image:url('images/aurora.jpg');background-size:cover;background-position:center;">
+                    <div class="gallery-item-overlay">
+                        <h3>北极光</h3>
+                        <p>冬季的格陵兰是观赏北极光的绝佳之地，绿光在夜空中舞动</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image:url('images/iceberg.jpg');background-size:cover;background-position:center;">
+                    <div class="gallery-item-overlay">
+                        <h3>冰山</h3>
+                        <p>迪斯科湾的冰山高达百米，漂浮在湛蓝的海面上</p>
+                    </div>
+                </div>
+                <div class="gallery-item large" style="background-image:url('images/scoresby.jpg');background-size:cover;background-position:center;">
+                    <div class="gallery-item-overlay">
+                        <h3>斯科尔斯比湾</h3>
+                        <p>世界上最大的峡湾系统之一，拥有超过100公里长的冰川</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image:url('images/muskox.jpg');background-size:cover;background-position:center;">
+                    <div class="gallery-item-overlay">
+                        <h3>麝牛</h3>
+                        <p>北极独有的大型哺乳动物，在苔原上自由漫步</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image:url('images/nuuk.jpg');background-size:cover;background-position:center;">
+                    <div class="gallery-item-overlay">
+                        <h3>努克</h3>
+                        <p>格陵兰首都，世界上纬度最高的首都之一</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture -->
+    <section class="culture">
+        <div class="container">
+            <h2 style="font-family:'Noto Serif SC',serif;font-size:2rem;margin-bottom:16px;text-align:center;">风土人情</h2>
+            <p style="text-align:center;color:var(--text-muted);max-width:600px;margin:0 auto 60px;">格陵兰人主要是因纽特人，他们在这片冰雪世界中世代繁衍生息，形成了独特而坚韧的文化</p>
+            
+ <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">🛶</div>
+                    <h3>皮划艇文化</h3>
+                    <p>因纽特皮划艇（kayak）是格陵兰人传统的狩猎和交通方式，这项技艺代代相传，如今也成为独特的文化体验</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">🏠</div>
+                    <h3>彩色房屋</h3>
+                    <p>努克的彩色房屋是格陵兰的标志风景，在白雪覆盖的大地上，一排排红黄蓝绿的房屋格外醒目</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">🌊</div>
+                    <h3>峡湾风光</h3>
+                    <p>格陵兰的峡湾深邃壮丽，船只穿行其中，两岸是千年冰川与陡峭岩壁的绝美画卷</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">❄️</div>
+                    <h3>极地生活</h3>
+                    <p>因纽特人在这片冰雪世界中世代繁衍生息，形成了独特而坚韧的极地文化</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="quote-section">
+        <div class="container" style="max-width:600px;">
+            <blockquote style="text-align:center;font-size:1.25rem;line-height:1.9;">"在这片被时间遗忘的土地上，每一次呼吸都感受到地球最初的模样。冰川在流淌，极光在舞蹈，而人类，只是这片永恒中的短暂过客。"</blockquote>
+            <cite style="display:block;text-align:center;margin-top:20px;font-size:0.9rem;">—— 关于格陵兰</cite>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>格陵兰岛 · 世界的尽头 · 冰雪的王国</p>
+            <div style="display:flex;gap:24px;justify-content:center;margin-top:16px;">
+                <a href="mailto:2209280739@qq.com" style="color:var(--frost);text-decoration:none;font-size:0.875rem;">📧 2209280739@qq.com</a>
+                <span style="color:var(--frost);">|</span>
+                <a href="#" style="color:var(--frost);text-decoration:none;font-size:0.875rem;">💬 xuzhiyu600</a>
+            </div>
+            <p style="margin-top:20px;">图片仅为示意 | 资料来源：<a href="https://www.nasa.gov" target="_blank">NASA</a> · <a href="https://www.greenland.com" target="_blank">Visit Greenland</a></p>
+        </div>
+    </footer>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- Snow Particles -->
+    <canvas id="snow-canvas"></canvas>
+
+    <script>
+        // ========== Scroll Progress ==========
+        const scrollProgress = document.createElement('div');
+        scrollProgress.className = 'scroll-progress';
+        document.body.appendChild(scrollProgress);
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // ========== Scroll Animations ==========
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('section').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${i * 0.1}s`;
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.animate').forEach(el => el.classList.add('animate'));
+
+        // ========== Snow Particles ==========
+        const snowCanvas = document.getElementById('snow-canvas');
+        const snowCtx = snowCanvas.getContext('2d');
+        let snowflakes = [];
+
+        function resizeSnow() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+        }
+        resizeSnow();
+        window.addEventListener('resize', resizeSnow);
+
+        class Snowflake {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * snowCanvas.width;
+                this.y = Math.random() * -100;
+                this.radius = Math.random() * 3 + 1;
+                this.speed = Math.random() * 1.5 + 0.5;
+                this.wind = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.wind + Math.sin(this.y * 0.01) * 0.5;
+                if (this.y > snowCanvas.height + 10) this.reset();
+            }
+            draw() {
+                snowCtx.beginPath();
+                snowCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                snowCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 80; i++) {
+            snowflakes.push(new Snowflake());
+        }
+
+        function animateSnow() {
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            snowflakes.forEach(s => {
+                s.update();
+                s.draw();
+            });
+            requestAnimationFrame(animateSnow);
+        }
+        animateSnow();
+
+        // ========== Parallax Scrolling ==========
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const hero = document.querySelector('.hero-bg');
+            if (hero) {
+                hero.style.transform = `translateY(${scrollY * 0.4}px)`;
+            }
+        });
+
+        // ========== Gallery Hover Effects ==========
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // ========== Frost Trail Cursor ==========
+        const frostTrail = document.querySelector('.frost-trail');
+        let mouseX = 0, mouseY = 0;
+        let trailX = 0, trailY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            trailX += (mouseX - trailX) * 0.3;
+            trailY += (mouseY - trailY) * 0.3;
+            frostTrail.style.left = trailX + 'px';
+            frostTrail.style.top = trailY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Entrance animation
+        anime({
+            targets: frostTrail,
+            opacity: [0, 0.6],
+            scale: [0, 1],
+            duration: 600,
+            easing: 'easeOutBack'
+        });
+
+        // ========== Blue Hour Cards ==========
+        anime({
+            targets: [cursorIce, cursorRing, cursorTrail],
+            opacity: [0, 1],
+            scale: [0, 1],
+            duration: 600,
+            easing: 'easeOutBack',
+            delay: anime.stagger(100)
+        });
+
+        // ========== Blue Hour Cards ==========
+        document.querySelectorAll('.blue-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.15), transparent 60%)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.background = '';
+            });
+        });
+
+        // ========== Smooth Reveal for Images ==========
+        const imgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'scale(1)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.gallery-item').forEach((img, i) => {
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.95)';
+            img.style.transition = `all 0.8s ease ${i * 0.15}s`;
+            imgObserver.observe(img);
+        });
+    </script>
+
+    <style>
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4a7ab0, #a8c5d8);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .animate {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blue-card {
+            transition: background 0.3s ease;
+        }
+    </style>
+</body>
+</html>

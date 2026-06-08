@@ -1,0 +1,541 @@
+<<<<<<< HEAD
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><title>俳句</title><style>*{margin:0;padding:0}body{font-family:sans-serif;background:#f5f0e8;color:#1a1a1a}.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center}.title{font-size:clamp(4rem,12vw,10rem);font-weight:700;letter-spacing:0.3em}.subtitle{font-size:1.2rem;letter-spacing:0.8em;color:#888;margin-top:1.5rem}.haiku-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;padding:4rem 2rem;max-width:1200px;margin:0 auto}.haiku-card{background:white;padding:2rem;border-top:3px solid #c4a35a;box-shadow:0 4px 20px rgba(0,0,0,0.05)}.haiku-text{font-size:1.5rem;line-height:1.8;margin:1rem 0}.haiku-author{font-size:0.75rem;color:#c4a35a;letter-spacing:0.3em;text-transform:uppercase}.haiku-meaning{font-size:0.9rem;color:#666;padding-left:1rem;border-left:2px solid #ffb7c5;margin-top:1rem}.poets{background:#1a1a1a;color:#f5f0e8;padding:6rem 2rem}.poets h2{text-align:center;font-size:2.5rem;margin-bottom:3rem}.poets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;max-width:1200px;margin:0 auto}.poet-card{text-align:center;padding:2rem;border:1px solid rgba(255,255,255,0.1)}.poet-portrait{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#c4a35a,#8b2323);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2rem;color:white}.footer{background:#1a1a1a;color:#f5f0e8;text-align:center;padding:4rem 2rem}.quote{font-size:1.5rem;color:#c4a35a;margin:2rem 0}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}.hero-title{animation:fadeInUp 1.5s ease-out}.nav{position:fixed;top:0;left:0;width:100%;padding:1.5rem 3rem;display:flex;justify-content:space-between;background:rgba(245,240,232,0.95);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,0.05)}.nav-logo{font-size:1.2rem;letter-spacing:0.3em;color:#1a1a1a;text-decoration:none}.nav-links{display:flex;gap:3rem;list-style:none}.nav-links a{text-decoration:none;color:#1a1a1a;font-size:0.85rem;letter-spacing:0.15em}.sakura-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;overflow:hidden}.sakura{position:absolute;width:15px;height:15px;background:#ffb7c5;border-radius:50% 0 50% 50%;opacity:0.6;animation:fall linear infinite}@keyframes fall{0%{transform:translateY(-100px) rotate(0deg);opacity:0}10%{opacity:0.6}100%{transform:translateY(100vh) rotate(360deg);opacity:0}}</style></head><body><div class=sakura-container id=sakura></div><nav class=nav><a href=# class=nav-logo>俳句</a><ul class=nav-links><li><a href=#haiku>Haiku</a></li><li><a href=#poets>Poets</a></li></ul></nav><section class=hero><h1 class=hero-title>俳句</h1><p class=subtitle>The Art of Japanese Poetry</p></section><section id=haiku><div class=haiku-grid><div class=haiku-card><p class=haiku-author>松尾芭蕉</p><p class=haiku-text>古池や<br>蛙飛び込む<br>水の音</p><p class=haiku-meaning>古老的池塘，一只青蛙跳入，水的声音。</p></div><div class=haiku-card><p class=haiku-author>松尾芭蕉</p><p class=haiku-text>闲かさや<br>岩にしみ込む<br>蝉の声</p><p class=haiku-meaning>寂静啊，蝉声渗入岩石。</p></div><div class=haiku-card><p class=haiku-author>小林一茶</p><p class=haiku-text>雀の子<br>迎へに来り<br>年初め</p><p class=haiku-meaning>小麻雀，前来迎接，新年的开始。</p></div><div class=haiku-card><p class=haiku-author>松尾芭蕉</p><p class=haiku-text>旅に病んで<br>梦は枯野に<br>かけけり</p><p class=haiku-meaning>旅途中病倒，梦里出现在枯野上。</p></div><div class=haiku-card><p class=haiku-author>与谢蕪村</p><p class=haiku-text>菜の花や<br>月は東に<br>日は西に</p><p class=haiku-meaning>菜花黄，月升东方，日落西。</p></div><div class=haiku-card><p class=haiku-author>正冈子规</p><p class=haiku-text>柿くへば<br>鐘が鳴るなり<br>法隆寺</p><p class=haiku-meaning>吃一口柿子，钟声响起，法隆寺。</p></div><div class=haiku-card><p class=haiku-author>松尾芭蕉</p><p class=haiku-text>夏草や<br>兵どもが<br>梦の迹</p><p class=haiku-meaning>夏草萋萋，武士们的梦之遗迹。</p></div><div class=haiku-card><p class=haiku-author>小林一茶</p><p class=haiku-text>雀の子<br>今朝も寒し<br>晒しもの</p><p class=haiku-meaning>小麻雀，今早也很冷，晒的衣物。</p></div></div></section><section class=poets><h2>俳圣</h2><div class=poets-grid><div class=poet-card><div class=poet-portrait>芭</div><h3>松尾芭蕉</h3><p>1644-1694 俳圣，追求禅意的闲寂境界。</p></div><div class=poet-card><div class=poet-portrait>蕪</div><h3>与谢蕪村</h3><p>1716-1784 中兴俳句，以绘画般的美学著称。</p></div><div class=poet-card><div class=poet-portrait>一茶</div><h3>小林一茶</h3><p>1763-1828 以平民视角写诗，清新而富有生活气息。</p></div><div class=poet-card><div class=poet-portrait>子</div><h3>正冈子规</h3><p>1867-1902 俳句改革先驱，提出写生理念。</p></div></div></section><footer class=footer><p class=quote>不易流行</p><p style=margin-top:2rem;font-size:0.85rem;color:#888>联系我：2209280739@qq.com | 微信号：xuzhiyu600</p></footer><script>function createSakura(){var c=document.getElementById("sakura");var s=document.createElement("div");s.classList.add("sakura");s.style.left=Math.random()*100+"%";s.style.animationDuration=(Math.random()*5+8)+"s";s.style.opacity=Math.random()*0.4+0.3;var sz=Math.random()*10+10;s.style.width=sz+"px";s.style.height=sz+"px";c.appendChild(s);setTimeout(function(){s.remove()},13000)}setInterval(createSakura,800)</script></body></html>
+=======
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Ricarto · 创意作品集</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231c1917'/><stop offset='100%25' stop-color='%2344403c'/></linearGradient></defs><circle cx='60' cy='60' r='54' fill='none' stroke='url(%23g)' stroke-width='2'/><circle cx='60' cy='60' r='46' fill='none' stroke='%23e7e5e4' stroke-width='1'/><path d='M45 38 L45 78 L52 78 L52 68 L62 68 Q72 68 72 53 Q72 42 62 40 L62 38 Q75 40 75 53 Q75 65 62 68 L52 68 L52 58 L60 58 L60 52 Q60 48 57 48 L52 48 L52 38 Z M52 42 L58 42 Q63 42 63 53 Q63 60 58 60 L52 60 Z' fill='url(%23g)'/><circle cx='85' cy='42' r='3' fill='%2378716c'/></svg>">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --bg-subtle: #f5f5f4;
+            --text-primary: #1c1917;
+            --text-secondary: #78716c;
+            --text-tertiary: #a8a29e;
+            --border: #e7e5e4;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        #particles-canvas {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0; pointer-events: none;
+            opacity: 0.4;
+        }
+        .container {
+            position: relative; z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+        header { margin-bottom: 100px; }
+        .name {
+            font-size: 0.875rem; font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+        }
+        .logo-mark {
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        .hero .quote {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 12px;
+        }
+        .hero .quote-source { font-size: 0.875rem; color: var(--text-tertiary); }
+        .section-label {
+            font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 100px;
+        }
+        .card {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            align-items: center;
+            gap: 32px;
+            padding: 32px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+        }
+        .card:hover {
+            background: #fafaf9;
+            border-color: var(--text-tertiary);
+            transform: translateX(8px);
+        }
+        .card-icon {
+            width: 80px; height: 80px;
+            border-radius: 12px;
+            background: var(--bg-subtle);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-icon { transform: scale(1.05); }
+        .card-content h2 {
+            font-size: 1.25rem; font-weight: 600;
+            margin-bottom: 8px; letter-spacing: -0.01em;
+        }
+        .card-content p {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 500px;
+        }
+        .card-meta {
+            display: flex; flex-direction: column;
+            align-items: flex-end; gap: 12px;
+        }
+        .card-tag {
+            font-size: 0.75rem; font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .card-arrow {
+            font-size: 1.25rem; color: var(--text-tertiary);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .card:hover .card-arrow { transform: translateX(4px); color: var(--text-primary); }
+        .contact {
+            display: flex; gap: 32px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+        .contact a {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.875rem; color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .contact a:hover { color: var(--text-primary); }
+        .wechat-icon {
+            width: 18px; height: 18px;
+            border-radius: 4px; background: #07c160;
+            display: inline-block; position: relative; flex-shrink: 0;
+        }
+        .wechat-icon::before {
+            content: ""; position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px; height: 8px;
+            border: 2px solid #fff;
+            border-radius: 1px;
+            border-top: none; border-bottom: none;
+        }
+        .wechat-icon::after {
+            content: ""; position: absolute;
+            top: 3px; left: 50%;
+            transform: translateX(-50%);
+            width: 6px; height: 5px;
+            background: #fff;
+            border-radius: 50% 50% 0 0;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 80px 24px 60px; }
+            header { margin-bottom: 60px; }
+            .card { grid-template-columns: 60px 1fr; gap: 20px; padding: 24px; }
+            .card-icon { width: 60px; height: 60px; font-size: 1.5rem; }
+            .card-meta { display: none; }
+            .contact { flex-direction: column; gap: 16px; }
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        header { animation: fadeIn 0.6s ease forwards; }
+        .card:nth-child(1) { animation: fadeIn 0.5s ease 0.1s forwards; opacity: 0; }
+        .card:nth-child(2) { animation: fadeIn 0.5s ease 0.2s forwards; opacity: 0; }
+        .card:nth-child(3) { animation: fadeIn 0.5s ease 0.3s forwards; opacity: 0; }
+        .contact { animation: fadeIn 0.5s ease 0.4s forwards; opacity: 0; }
+
+        /* Custom Cursor - Minimal */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+        .cursor-ring {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid rgba(120, 113, 108, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, border-radius 0.25s ease;
+        }
+        .cursor-dot.hover { transform: translate(-50%, -50%) scale(0.6); background: var(--text-secondary); }
+        .cursor-ring.hover { width: 44px; height: 44px; border-color: rgba(28, 25, 23, 0.3); }
+        a, .card { cursor: none; }
+
+        /* Cursor Trail */
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--text-tertiary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-trail"></div>
+    <script src="https://xuzhiyu001.github.io/lib/anime/anime.min.js"></script>
+    <div class="container">
+        <header>
+            <div class="logo-mark">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="48" height="48">
+                  <defs>
+                    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#1c1917;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#44403c;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="url(#logo-grad)" stroke-width="3"/>
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="#e7e5e4" stroke-width="1"/>
+                  <path d="M 45 38 L 45 78 L 52 78 L 52 68 L 62 68 Q 72 68 72 53 Q 72 42 62 40 L 62 38 Q 75 40 75 53 Q 75 65 62 68 L 52 68 L 52 58 L 60 58 L 60 52 Q 60 48 57 48 L 52 48 L 52 38 Z M 52 42 L 58 42 Q 63 42 63 53 Q 63 60 58 60 L 52 60 Z" fill="url(#logo-grad)"/>
+                  <circle cx="85" cy="42" r="3" fill="#78716c"/>
+                </svg>
+            </div>
+            <p class="name">Ricarto</p>
+            <div class="hero">
+                <h1>探索数字世界的<br>创意表达</h1>
+                <p class="quote" id="quote"></p>
+                <p class="quote-source" id="quote-source"></p>
+            </div>
+        </header>
+        <div class="section-label">作品集</div>
+        <div class="cards">
+            <a href="https://xuzhiyu001.github.io/61" class="card">
+                <div class="card-icon">🎂</div>
+                <div class="card-content">
+                    <h2>61 · 童梦奇缘</h2>
+                    <p>为庆祝六一儿童节而生的梦幻空间。童年回忆被一帧帧珍藏，无论多大，这里永远是最温暖的童话世界。</p>
+                </div>
+                <div class="card-meta">
+                    <span class="card-tag">儿童节企划</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+            <a href="https://xuzhiyu001.github.io/dino" class="card">
+                <div class="card-icon">🦖</div>
+                <div class="card-content">
+                    <h2>小恐龙 · 经典重现</h2>
+                    <p>Chrome 离线页面的可爱恐龙全新进化。无尽跳跃，挑战极限高分！</p>
+                </div>
+                <div class="card-meta">
+                    <span class="card-tag">休闲游戏</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+            <a href="https://xuzhiyu001.github.io/haiku" class="card">
+                <div class="card-icon">🌸</div>
+                <div class="card-content">
+                    <h2>俳句 · 日本诗歌艺术</h2>
+                    <p>以17音节捕捉自然瞬间。探索松尾芭蕉、小林一茶等俳圣的经典之作。</p>
+                </div>
+                <div class="card-meta">
+                    <span class="card-tag">文学艺术</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+            <a href="https://xuzhiyu001.github.io/GreenLand" class="card">
+                <div class="card-icon">🧊</div>
+                <div class="card-content">
+                    <h2>格陵兰岛 · 世界的尽头</h2>
+                    <p>地球上最后的净土之一，世界最大的岛屿，一片被冰雪覆盖的神秘大陆。</p>
+                </div>
+                <div class="card-meta">
+                    <span class="card-tag">旅行记录</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+        <a href="https://xuzhiyu001.github.io/epub_reader" class="card">
+                <div class="card-icon">📖</div>
+                <div class="card-content">
+                    <h2>EPUB 阅读器 · 优雅阅读</h2>
+                    <p>简洁优雅的电子书阅读器，支持本地文件和在线链接，记忆阅读进度。仓库有《龙族》📚</p>
+                </div>
+                <div class="card-meta">
+                    <span class="card-tag">阅读工具</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+        </div>
+        <div class="contact">
+            <a href="mailto:2209280739@qq.com"><span>📧</span><span>2209280739@qq.com</span></a>
+            <a href="#"><span class="wechat-icon"></span><span>xuzhiyu600</span></a>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById("particles-canvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        let particleMouseX = -1000, particleMouseY = -1000;
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener("resize", resize);
+        function Particle() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.3 + 0.1;
+        }
+        Particle.prototype.update = function() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            const dx = particleMouseX - this.x, dy = particleMouseY - this.y, dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) { this.x -= dx * 0.005; this.y -= dy * 0.005; }
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+            }
+        };
+        Particle.prototype.draw = function() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(120, 113, 108, " + this.opacity + ")";
+            ctx.fill();
+        };
+        for (let i = 0; i < 40; i++) particles.push(new Particle());
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = "rgba(120, 113, 108, " + (0.1 * (1 - dist / 150)) + ")";
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(function(p) { p.update(); p.draw(); });
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+        animate();
+        document.addEventListener("mousemove", function(e) { particleMouseX = e.clientX; particleMouseY = e.clientY; });
+        document.addEventListener("mouseleave", function() { mouseX = -1000; mouseY = -1000; });
+        fetch("https://v1.hitokoto.cn/")
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                document.getElementById("quote").textContent = d.hitokoto;
+                document.getElementById("quote-source").textContent = "—— " + d.from;
+            })
+            .catch(function() {
+                document.getElementById("quote").textContent = "创意是灵魂的游戏";
+                document.getElementById("quote-source").textContent = "— 未知";
+            });
+
+        // ========== Anime.js Custom Cursor ==========
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        const cursorTrail = document.querySelector('.cursor-trail');
+        let mouseX = 0, mouseY = 0;
+        let dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+        let isIdle = false;
+        let idleTimer = null;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            isIdle = false;
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => { isIdle = true; }, 3000);
+        });
+
+        // Hover detection with anime.js animation
+        const hoverTargets = document.querySelectorAll('a, .card');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.classList.add('hover');
+                cursorRing.classList.add('hover');
+                anime({
+                    targets: cursorDot,
+                    scale: 0.6,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+                anime({
+                    targets: cursorRing,
+                    width: 44,
+                    height: 44,
+                    borderColor: 'rgba(28, 25, 23, 0.3)',
+                    duration: 250,
+                    easing: 'easeOutBack'
+                });
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('hover');
+                cursorRing.classList.remove('hover');
+                anime({
+                    targets: cursorDot,
+                    scale: 1,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+                anime({
+                    targets: cursorRing,
+                    width: 32,
+                    height: 32,
+                    borderColor: 'rgba(120, 113, 108, 0.4)',
+                    duration: 250,
+                    easing: 'easeOutQuad'
+                });
+            });
+        });
+
+        // Click ripple effect with anime.js
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: fixed;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                width: 8px;
+                height: 8px;
+                background: var(--text-tertiary);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9996;
+                opacity: 0.5;
+            `;
+            document.body.appendChild(ripple);
+
+            anime({
+                targets: ripple,
+                scale: [1, 12],
+                opacity: [0.5, 0],
+                duration: 600,
+                easing: 'easeOutExpo',
+                complete: () => ripple.remove()
+            });
+
+            // Cursor pulse on click
+            anime({
+                targets: cursorDot,
+                scale: [1, 1.5, 1],
+                duration: 300,
+                easing: 'easeOutElastic(1, 0.5)'
+            });
+        });
+
+        // Animation loop with smooth following
+        function animateCursor() {
+            dotX += (mouseX - dotX) * 0.85;
+            dotY += (mouseY - dotY) * 0.85;
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
+
+            ringX += (mouseX - ringX) * 0.1;
+            ringY += (mouseY - ringY) * 0.1;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+
+            // Trail follows with anime.js
+            anime({
+                targets: cursorTrail,
+                left: dotX,
+                top: dotY,
+                duration: 100,
+                easing: 'linear'
+            });
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Idle pulse animation
+        function idlePulse() {
+            if (isIdle && !cursorDot.classList.contains('hover')) {
+                anime({
+                    targets: cursorDot,
+                    scale: [1, 1.2, 1],
+                    duration: 1500,
+                    easing: 'easeInOutSine',
+                    complete: () => {
+                        if (isIdle) idlePulse();
+                    }
+                });
+            } else {
+                setTimeout(idlePulse, 1000);
+            }
+        }
+        idlePulse();
+
+        // Entrance animation for cursor elements
+        anime({
+            targets: [cursorDot, cursorRing],
+            opacity: [0, 1],
+            scale: [0, 1],
+            duration: 600,
+            easing: 'easeOutBack',
+            delay: anime.stagger(100)
+        });
+    </script>
+</body>
+</html>
+>>>>>>> f5e3310 (Restore all projects and add EPUB Reader card)
